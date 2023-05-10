@@ -1,0 +1,60 @@
+<html>
+    <head>
+        
+        <title>Registrazione</title>
+        
+    </head>
+    
+    <body>
+        
+        <script>
+            
+            function validate()//definisco la funzione validate
+            {
+                var usr=document.getElementById("usr").value;
+                var psw=document.getElementById("psw").value;
+                var repass=document.getElementById("repass").value; //prendo i valori dal form
+                var name=document.getElementById("name").value;
+                var lsname=document.getElementById("lsname").value;
+                
+                if((usr!=="" && psw!=="" && repass!=="" && name!=="" && lsname!=="") && (psw===repass)) //controllo se tutti i campi NON sono vuoti e se le password coincidono
+                {
+                        return true;
+                }
+                else
+                {
+                        alert("Assicurati che i campi siano tutti compilati e che le password coincidano");
+                        return false;
+                }
+            }
+            
+        </script>
+        
+        <center>
+        <h1>Registrazione Utente</h1>
+        
+        <form method="post" action="script.php" onSubmit="return validate()">
+            <fieldset>
+                <legend>Inserisci i dati</legend>
+                <label for="usr">Username</label><br><input type="text" id="usr" name="user"><br>
+                <label for="psw">Password</label><br><input type="password" id="psw" name="pass"><br>
+                <label for="repass">Reinserisci Password</label><br><input type="password" id="repass"><br>
+                <label for="name">Nome</label><br><input type="text" id="name" name="nm"><br>
+                <label for="lsname">Cognome</label><br><input type="text" id="lsname" name="lnm"><br><br>
+                
+                <input type="reset"> <input type="submit">
+            </fieldset>
+        </form>
+        </center>
+
+        <form>
+            <?php
+                $session_start();
+
+                if($_SESSION["reg"]){
+                    echo <h2> Username gia in uso </h2>
+                }
+            ?>
+        </form>
+    </body>
+</html>
